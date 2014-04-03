@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -8,14 +7,15 @@ using System.Data;
 
 namespace API
 {
-    class ItemCatalog
+    public class ItemCatalog
     {
-        private Hashtable _products;
+        private Dictionary<string, Product> _products;
         public ItemCatalog(DataTable prods)
         {
+            _products = new Dictionary<string, Product>();
             foreach (DataRow row in prods.Rows)
             {
-                _products[row["Name"]] = new Product(row["Name"] as string, (double)row["Price"], (double)row["DiscountPrice"], (int)row["DiscountQuantity"]);
+                _products[(row["Name"]).ToString()] = new Product(row["Name"] as string, Convert.ToDouble(row["Price"]), Convert.ToDouble(row["DiscountPrice"]), Convert.ToInt32(row["DiscountQuantity"]));
             }
         }
 
@@ -25,9 +25,9 @@ namespace API
             {
                 return _products[name] as Product;
             }
-            catch (System.IndexOutOfRangeException ex)
+            catch (System.Collections.Generic.KeyNotFoundException ex)
             {
-                throw new System.ArgumentException("Invalid product name", "index", ex);
+                throw new System.Collections.Generic.KeyNotFoundException("Invalid product name", ex);
             }
         }
 

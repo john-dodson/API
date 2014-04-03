@@ -5,7 +5,7 @@ using System.Text;
 
 namespace API
 {
-    class Product
+    public class Product
     {
         private string _name;
         private double _price;

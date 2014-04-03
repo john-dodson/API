@@ -8,26 +8,28 @@ namespace API
 {
     public class Terminal
     {
-        private ItemCatalog _catalog;
-        private Hashtable _scanned;
+        public ItemCatalog catalog;
+        public Dictionary<string, Product> scanned;
 
-        public Terminal(ItemCatalog catalog)
+        public Terminal(ItemCatalog cat)
         {
-            _scanned = new Hashtable();
-            _catalog = catalog;
+            scanned = new Dictionary<string, Product>();
+            catalog = cat;
         }
 
         public void Scan(string name)
         {
-            if (_scanned.ContainsKey(name))
+            if (scanned.ContainsKey(name))
             {
-                var item = _scanned[name] as Product;
+                var item = scanned[name] as Product;
                 item.count++;
-                _scanned[name] = item;
+                scanned[name] = item;
             }
             else
             {
-                _scanned[name] = _catalog.Get(name);
+                var prod = catalog.Get(name);
+                prod.count++;
+                scanned[name] = prod;
             }
 
         }
@@ -35,13 +37,13 @@ namespace API
         public double CalculateTotal()
         {
             double total = 0;
-            if (_scanned.Values.Count > 0)
+            if (scanned.Values.Count > 0)
             {
-                foreach (Product prod in _scanned.Values)
+                foreach (Product prod in scanned.Values)
                 {
                     int quant = prod.count;
                     int dQuant = prod.GetDiscountQuantity();
-                    if (quant > dQuant)
+                    if ((quant >= dQuant) && dQuant != 0)
                     {
                         double extra = (quant % dQuant) * prod.GetPrice();
                         double discount = (quant / dQuant) * prod.GetDiscountPrice();

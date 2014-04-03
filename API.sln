@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{9EB2B21F-2541-4E7B-AF12-81E5B4D306A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITest", "API-Test\APITest.csproj", "{AB81D964-18B0-4A1E-BFE6-344AFBC8CB3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{9EB2B21F-2541-4E7B-AF12-81E5B4D306A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EB2B21F-2541-4E7B-AF12-81E5B4D306A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EB2B21F-2541-4E7B-AF12-81E5B4D306A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB81D964-18B0-4A1E-BFE6-344AFBC8CB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB81D964-18B0-4A1E-BFE6-344AFBC8CB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB81D964-18B0-4A1E-BFE6-344AFBC8CB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB81D964-18B0-4A1E-BFE6-344AFBC8CB3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
