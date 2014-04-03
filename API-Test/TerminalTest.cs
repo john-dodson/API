@@ -56,16 +56,10 @@ namespace APITest
         }
 
         [Test]
-        public void ConstructorTest()
-        {
-            Terminal t = new Terminal(catalog);
-            Assert.AreEqual(t.catalog, catalog);
-        }
-
-        [Test]
         public void ScanTest()
         {
-            Terminal t = new Terminal(catalog);
+            Terminal t = new Terminal(products);
+            t.SetPrices();
             t.Scan("A");
             Product scanned = t.scanned["A"] as Product;
             Assert.AreEqual(scanned.GetName(), "A");
@@ -75,7 +69,8 @@ namespace APITest
         [Test]
         public void TotalTest1()
         {
-            Terminal t = new Terminal(catalog);
+            Terminal t = new Terminal(products);
+            t.SetPrices();
             t.Scan("A");
             t.Scan("B");
             t.Scan("C");
@@ -90,7 +85,8 @@ namespace APITest
         [Test]
         public void TotalTest2()
         {
-            Terminal t = new Terminal(catalog);
+            Terminal t = new Terminal(products);
+            t.SetPrices();
             t.Scan("C");
             t.Scan("C");
             t.Scan("C");
@@ -104,7 +100,8 @@ namespace APITest
         [Test]
         public void TotalTest3()
         {
-            Terminal t = new Terminal(catalog);
+            Terminal t = new Terminal(products);
+            t.SetPrices();
             t.Scan("A");
             t.Scan("B");
             t.Scan("C");

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace API
 {
@@ -10,11 +11,17 @@ namespace API
     {
         public ItemCatalog catalog;
         public Dictionary<string, Product> scanned;
+        public DataTable dt;
 
-        public Terminal(ItemCatalog cat)
+        public Terminal(DataTable data)
         {
             scanned = new Dictionary<string, Product>();
-            catalog = cat;
+            dt = data;
+        }
+
+        public void SetPrices()
+        {
+            catalog = new ItemCatalog(dt);
         }
 
         public void Scan(string name)
