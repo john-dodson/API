@@ -36,12 +36,7 @@ namespace API
 
         public double CalculateTotal()
         {
-            double total = 0;
-            foreach (CartItem item in _cart.GetContents().Values)
-            {
-                total += item.CalculatePrice();
-            }
-            return total;
+            return _cart.CalculateTotal();
         }
 
         public Cart GetCart()

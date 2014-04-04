@@ -36,5 +36,15 @@ namespace API
         {
             return _contents[name];
         }
+
+        public double CalculateTotal()
+        {
+            double total = 0;
+            foreach (CartItem item in _contents.Values)
+            {
+                total += item.CalculatePrice();
+            }
+            return total;
+        }
     }
 }
