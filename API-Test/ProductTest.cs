@@ -13,11 +13,23 @@ namespace APITest
         [Test]
         public void ConstructorTest()
         {
-            var a = new Product("A", 2.00, 7.00, 4);
+            var discount = new VolumeDiscount(7.00, 4);
+            var discounts = new Discount[] { discount };
+
+            var a = new Product("A", 2.00, discounts);
             Assert.AreEqual(a.GetName(), "A");
             Assert.AreEqual(a.GetPrice(), 2.00);
-            Assert.AreEqual(a.GetDiscountPrice(), 7.00);
-            Assert.AreEqual(a.GetDiscountQuantity(), 4);
+            Assert.AreEqual(a.GetDiscounts(), discounts);
+        }
+
+        [Test]
+        public void NoDiscountTest()
+        {
+
+            var a = new Product("A", 2.00);
+            Assert.AreEqual(a.GetName(), "A");
+            Assert.AreEqual(a.GetPrice(), 2.00);
+            Assert.AreEqual(a.GetDiscounts(), null);
         }
     }
 }

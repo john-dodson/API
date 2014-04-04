@@ -9,61 +9,54 @@ namespace API
 {
     public class Terminal
     {
-        public ItemCatalog catalog;
-        public Dictionary<string, Product> scanned;
-        public DataTable dt;
+        private ItemCatalog _catalog;
+        private Cart _cart;
+        private DataTable _dt;
 
         public Terminal(DataTable data)
         {
-            scanned = new Dictionary<string, Product>();
-            dt = data;
+            _cart = new Cart();
+            _dt = data;
         }
 
         public void SetPrices()
         {
-            catalog = new ItemCatalog(dt);
+            _catalog = new ItemCatalog(_dt);
         }
 
         public void Scan(string name)
         {
-            if (scanned.ContainsKey(name))
-            {
-                var item = scanned[name] as Product;
-                item.count++;
-                scanned[name] = item;
-            }
-            else
-            {
-                var prod = catalog.Get(name);
-                prod.count++;
-                scanned[name] = prod;
-            }
+            _cart.AddItem(_catalog.Get(name), 1);
+        }
 
+        public void ScanMultiple(string name, int quantity)
+        {
+            _cart.AddItem(_catalog.Get(name), quantity);
         }
 
         public double CalculateTotal()
         {
             double total = 0;
-            if (scanned.Values.Count > 0)
+            foreach (CartItem item in _cart.GetContents().Values)
             {
-                foreach (Product prod in scanned.Values)
-                {
-                    int quant = prod.count;
-                    int dQuant = prod.GetDiscountQuantity();
-                    if ((quant >= dQuant) && dQuant != 0)
-                    {
-                        double extra = (quant % dQuant) * prod.GetPrice();
-                        double discount = (quant / dQuant) * prod.GetDiscountPrice();
-                        total += extra;
-                        total += discount;
-                    }
-                    else
-                    {
-                        total += (prod.count * prod.GetPrice());
-                    }
-                }
+                total += item.CalculatePrice();
             }
             return total;
+        }
+
+        public Cart GetCart()
+        {
+            return _cart;
+        }
+
+        public ItemCatalog GetItemCatalog()
+        {
+            return _catalog;
+        }
+
+        public DataTable GetData()
+        {
+            return _dt;
         }
 
 

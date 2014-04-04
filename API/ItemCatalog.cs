@@ -15,8 +15,20 @@ namespace API
             _products = new Dictionary<string, Product>();
             foreach (DataRow row in prods.Rows)
             {
-                _products[(row["Name"]).ToString()] = new Product(row["Name"] as string, Convert.ToDouble(row["Price"]), Convert.ToDouble(row["DiscountPrice"]), Convert.ToInt32(row["DiscountQuantity"]));
+                if (row["Discounts"].GetType() != typeof(System.DBNull))
+                {
+                    _products[(row["Name"]).ToString()] = new Product(row["Name"] as string, Convert.ToDouble(row["Price"]), (Discount[])row["Discounts"]);
+                }
+                else
+                {
+                    _products[(row["Name"]).ToString()] = new Product(row["Name"] as string, Convert.ToDouble(row["Price"]));
+                }
             }
+        }
+
+        public int GetCount()
+        {
+            return _products.Count();
         }
 
         public Product Get(string name)

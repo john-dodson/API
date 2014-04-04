@@ -12,38 +12,41 @@ namespace APITest
     public class ItemCatalogTest
     {
         DataTable products;
+        private VolumeDiscount disA;
+        private VolumeDiscount disC;
+        private IEnumerable<Discount> packA;
+        private IEnumerable<Discount> packC;
+
         [SetUp]
         public void Init()
         {
             products = new DataTable();
             products.Columns.Add("Name");
             products.Columns.Add("Price");
-            products.Columns.Add("DiscountPrice");
-            products.Columns.Add("DiscountQuantity");
+            products.Columns.Add("Discounts", typeof(IEnumerable<Discount>));
+
+            disA = new VolumeDiscount(7.00, 4);
+            disC = new VolumeDiscount(6.00, 6);
+            packA = new Discount[] { disA };
+            packC = new Discount[] { disC };
 
             DataRow a = products.NewRow();
             a["Name"] = "A";
             a["Price"] = 2.00;
-            a["DiscountPrice"] = 7.00;
-            a["DiscountQuantity"] = 4;
+            a["Discounts"] = packA;
 
             DataRow b = products.NewRow();
             b["Name"] = "B";
             b["Price"] = 12.00;
-            b["DiscountPrice"] = 0.00;
-            b["DiscountQuantity"] = 0;
 
             DataRow c = products.NewRow();
             c["Name"] = "C";
             c["Price"] = 1.25;
-            c["DiscountPrice"] = 6.00;
-            c["DiscountQuantity"] = 6;
+            c["Discounts"] = packC;
 
             DataRow d = products.NewRow();
             d["Name"] = "D";
             d["Price"] = 0.15;
-            d["DiscountPrice"] = 0.00;
-            d["DiscountQuantity"] = 0;
 
             products.Rows.Add(a);
             products.Rows.Add(b);
@@ -52,36 +55,39 @@ namespace APITest
         }
 
         [Test]
-        public void CreateAndGetCatalog()
+        public void GetTest()
         {
             ItemCatalog catalog = new ItemCatalog(products);
             var a = catalog.Get("A");
             Assert.AreEqual(a.GetName(), "A");
             Assert.AreEqual(a.GetPrice(), 2.00);
-            Assert.AreEqual(a.GetDiscountPrice(), 7.00);
-            Assert.AreEqual(a.GetDiscountQuantity(), 4);
+            Assert.AreEqual(a.GetDiscounts(), packA);
             var b = catalog.Get("B");
             Assert.AreEqual(b.GetName(), "B");
             Assert.AreEqual(b.GetPrice(), 12.00);
-            Assert.AreEqual(b.GetDiscountPrice(), 0.00);
-            Assert.AreEqual(b.GetDiscountQuantity(), 0);
+            Assert.AreEqual(b.GetDiscounts(), null);
             var c = catalog.Get("C");
             Assert.AreEqual(c.GetName(), "C");
             Assert.AreEqual(c.GetPrice(), 1.25);
-            Assert.AreEqual(c.GetDiscountPrice(), 6.00);
-            Assert.AreEqual(c.GetDiscountQuantity(), 6);
+            Assert.AreEqual(c.GetDiscounts(), packC);
             var d = catalog.Get("D");
             Assert.AreEqual(d.GetName(), "D");
             Assert.AreEqual(d.GetPrice(), 0.15);
-            Assert.AreEqual(d.GetDiscountPrice(), 0.00);
-            Assert.AreEqual(d.GetDiscountQuantity(), 0);
+            Assert.AreEqual(d.GetDiscounts(), null);
         }
 
         [Test, ExpectedException(typeof(System.Collections.Generic.KeyNotFoundException))]
-        public void InvalidProduct()
+        public void InvalidProductTest()
         {
             var catalog = new ItemCatalog(products);
             Product a = catalog.Get("E");
+        }
+
+        [Test]
+        public void GetCountTest()
+        {
+            var catalog = new ItemCatalog(products);
+            Assert.AreEqual(catalog.GetCount(), 4);
         }
 
     }

@@ -9,17 +9,19 @@ namespace API
     {
         private string _name;
         private double _price;
-        private double _discountPrice;
-        private int _discountQuantity;
-        public int count { get; set; }
+        private IEnumerable<Discount> _discounts;
 
-        public Product(string name, double price, double discountPrice, int discountQuantity)
+        public Product(string name, double price)
         {
             _name = name;
             _price = price;
-            _discountPrice = discountPrice;
-            _discountQuantity = discountQuantity;
-            count = 0;
+        }
+
+        public Product(string name, double price, IEnumerable<Discount> discounts)
+        {
+            _name = name;
+            _price = price;
+            _discounts = discounts;
         }
 
         public string GetName()
@@ -32,14 +34,9 @@ namespace API
             return _price;
         }
 
-        public double GetDiscountPrice()
+        public IEnumerable<Discount> GetDiscounts()
         {
-            return _discountPrice;
-        }
-
-        public int GetDiscountQuantity()
-        {
-            return _discountQuantity;
+            return _discounts;
         }
     }
 }
