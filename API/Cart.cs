@@ -42,9 +42,40 @@ namespace API
             double total = 0;
             foreach (CartItem item in _contents.Values)
             {
-                total += item.CalculatePrice();
+                total += item.GetProduct().GetPrice() * item.quantity;
             }
             return total;
+        }
+
+        public double CalculateDiscount()
+        {
+            double discount = 0;
+            foreach (CartItem item in _contents.Values)
+            {
+                var product = item.GetProduct();
+                var quantity = item.quantity;
+                if (product.GetDiscounts() != null)
+                {
+                    foreach (Discount d in product.GetDiscounts())
+                    {
+                        double dprice = 0;
+                        if (d.discountType == DiscountType.Volume)
+                        {
+                            var volume = d as VolumeDiscount;
+                            int dQuant = volume.discountQuantity;
+                            if ((quantity >= dQuant))
+                            {
+                                double extra = (quantity % dQuant) * product.GetPrice();
+                                double dis = (quantity / dQuant) * volume.discountPrice;
+                                dprice += extra;
+                                dprice += discount;
+                                discount += (product.GetPrice() * quantity) - dprice;
+                            }
+                        }
+                    }
+                }
+            }
+            return discount;
         }
     }
 }

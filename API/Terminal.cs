@@ -36,7 +36,7 @@ namespace API
 
         public double CalculateTotal()
         {
-            return _cart.CalculateTotal();
+            return _cart.CalculateTotal() - _cart.CalculateDiscount();
         }
 
         public Cart GetCart()
