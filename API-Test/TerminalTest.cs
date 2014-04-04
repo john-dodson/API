@@ -125,7 +125,7 @@ namespace APITest
         }
 
         [Test]
-        public void TotalTest1()
+        public void CalculateTotalTest1()
         {
             Terminal t = new Terminal(products);
             t.SetPrices();
@@ -141,7 +141,7 @@ namespace APITest
         }
 
         [Test]
-        public void TotalTest2()
+        public void CalculateTotalTest2()
         {
             Terminal t = new Terminal(products);
             t.SetPrices();
@@ -156,7 +156,7 @@ namespace APITest
         }
 
         [Test]
-        public void TotalTest3()
+        public void CalculateTotalTest3()
         {
             Terminal t = new Terminal(products);
             t.SetPrices();
