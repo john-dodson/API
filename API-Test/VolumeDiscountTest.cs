@@ -10,6 +10,9 @@ namespace APITest
     [TestFixture]
     public class VolumeDiscountTest
     {
+        /*
+         * Test class constructor
+         */
         [Test]
         public void ConstructorTest()
         {

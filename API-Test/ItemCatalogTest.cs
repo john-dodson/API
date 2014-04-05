@@ -17,6 +17,10 @@ namespace APITest
         private IEnumerable<Discount> packA;
         private IEnumerable<Discount> packC;
 
+
+        /*
+         * Setup tests
+         */
         [SetUp]
         public void Init()
         {
@@ -54,6 +58,9 @@ namespace APITest
             products.Rows.Add(d);
         }
 
+        /*
+         * Test getting a Product from the catalog
+         */
         [Test]
         public void GetTest()
         {
@@ -65,7 +72,7 @@ namespace APITest
             var b = catalog.Get("B");
             Assert.AreEqual(b.GetName(), "B");
             Assert.AreEqual(b.GetPrice(), 12.00);
-            Assert.AreEqual(b.GetDiscounts(), null);
+            Assert.AreEqual(b.GetDiscounts(), new Discount[] { });
             var c = catalog.Get("C");
             Assert.AreEqual(c.GetName(), "C");
             Assert.AreEqual(c.GetPrice(), 1.25);
@@ -73,9 +80,12 @@ namespace APITest
             var d = catalog.Get("D");
             Assert.AreEqual(d.GetName(), "D");
             Assert.AreEqual(d.GetPrice(), 0.15);
-            Assert.AreEqual(d.GetDiscounts(), null);
+            Assert.AreEqual(d.GetDiscounts(), new Discount[] { });
         }
 
+        /*
+         * Test trying to get an invalid Product
+         */
         [Test, ExpectedException(typeof(System.Collections.Generic.KeyNotFoundException))]
         public void InvalidProductTest()
         {
@@ -83,6 +93,9 @@ namespace APITest
             Product a = catalog.Get("E");
         }
 
+        /*
+         * Test getting the number of products in the catalog
+         */
         [Test]
         public void GetCountTest()
         {

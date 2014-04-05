@@ -10,6 +10,9 @@ namespace APITest
     [TestFixture]
     public class ProductTest
     {
+        /*
+         * Test product constructor
+         */
         [Test]
         public void ConstructorTest()
         {
@@ -22,6 +25,9 @@ namespace APITest
             Assert.AreEqual(a.GetDiscounts(), discounts);
         }
 
+        /*
+         * Test that running GetDiscount() on a Product with no discounts returs and empty array
+         */
         [Test]
         public void NoDiscountTest()
         {
@@ -29,7 +35,7 @@ namespace APITest
             var a = new Product("A", 2.00);
             Assert.AreEqual(a.GetName(), "A");
             Assert.AreEqual(a.GetPrice(), 2.00);
-            Assert.AreEqual(a.GetDiscounts(), null);
+            Assert.AreEqual(a.GetDiscounts(), new Discount[]{});
         }
     }
 }

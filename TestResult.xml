@@ -1,25 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\john.dodson\Documents\GitHub\API\APITest.nunit" total="1" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-04-04" time="17:12:02">
-  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="NYJDODSON2" user="john.dodson" user-domain="NA" />
+<test-results name="C:\Users\John Dodson\Documents\GitHub\API\APITest.nunit" total="23" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-04-05" time="11:36:53">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\John Dodson\Documents\GitHub\API" machine-name="BLACKBIRD" user="John Dodson" user-domain="Blackbird" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Project" name="C:\Users\john.dodson\Documents\GitHub\API\APITest.nunit" executed="True" result="Failure" success="False" time="0.003" asserts="0">
+  <test-suite type="Project" name="C:\Users\John Dodson\Documents\GitHub\API\APITest.nunit" executed="True" result="Success" success="True" time="0.465" asserts="0">
     <results>
-      <test-suite type="Assembly" name="C:\Users\john.dodson\Documents\GitHub\API\API-Test\bin\Release\API-Test.dll" executed="True" result="Failure" success="False" time="0.003" asserts="0">
+      <test-suite type="Assembly" name="C:\Users\John Dodson\Documents\GitHub\API\API-Test\bin\Release\API-Test.dll" executed="True" result="Success" success="True" time="0.440" asserts="0">
         <results>
-          <test-suite type="Namespace" name="APITest" executed="True" result="Failure" success="False" time="0.002" asserts="0">
+          <test-suite type="Namespace" name="APITest" executed="True" result="Success" success="True" time="0.439" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="TerminalTest" executed="True" result="Failure" success="False" time="0.002" asserts="0">
+              <test-suite type="TestFixture" name="CartItemTest" executed="True" result="Success" success="True" time="0.111" asserts="0">
                 <results>
-                  <test-case name="APITest.TerminalTest.CalculateTotalTest2" executed="True" result="Failure" success="False" time="0.001" asserts="1">
-                    <failure>
-                      <message><![CDATA[  Expected: 1.25d
-  But was:  7.25d
-]]></message>
-                      <stack-trace><![CDATA[at APITest.TerminalTest.CalculateTotalTest2() in C:\Users\john.dodson\Documents\GitHub\API\API-Test\TerminalTest.cs:line 154
-]]></stack-trace>
-                    </failure>
-                  </test-case>
+                  <test-case name="APITest.CartItemTest.CalculateDiscountTest" executed="True" result="Success" success="True" time="0.080" asserts="3" />
+                  <test-case name="APITest.CartItemTest.CalculatePriceTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="APITest.CartItemTest.ConstructorTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="CartTest" executed="True" result="Success" success="True" time="0.044" asserts="0">
+                <results>
+                  <test-case name="APITest.CartTest.AddExistingItemTest" executed="True" result="Success" success="True" time="0.008" asserts="3" />
+                  <test-case name="APITest.CartTest.AddItemTest" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+                  <test-case name="APITest.CartTest.AddMultipleItemsTest" executed="True" result="Success" success="True" time="0.004" asserts="6" />
+                  <test-case name="APITest.CartTest.CalculatePriceDiscountTest1" executed="True" result="Success" success="True" time="0.004" asserts="2" />
+                  <test-case name="APITest.CartTest.CalculatePriceDiscountTest2" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="APITest.CartTest.CalculatePriceDiscountTest3" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ItemCatalogTest" executed="True" result="Success" success="True" time="0.181" asserts="0">
+                <results>
+                  <test-case name="APITest.ItemCatalogTest.GetCountTest" executed="True" result="Success" success="True" time="0.157" asserts="1" />
+                  <test-case name="APITest.ItemCatalogTest.GetTest" executed="True" result="Success" success="True" time="0.006" asserts="12" />
+                  <test-case name="APITest.ItemCatalogTest.InvalidProductTest" executed="True" result="Success" success="True" time="0.007" asserts="0" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ProductTest" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                <results>
+                  <test-case name="APITest.ProductTest.ConstructorTest" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+                  <test-case name="APITest.ProductTest.NoDiscountTest" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="TerminalTest" executed="True" result="Success" success="True" time="0.050" asserts="0">
+                <results>
+                  <test-case name="APITest.TerminalTest.CalculateTotalTest1" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                  <test-case name="APITest.TerminalTest.CalculateTotalTest2" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="APITest.TerminalTest.CalculateTotalTest3" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="APITest.TerminalTest.GetDataTest" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="APITest.TerminalTest.GetItemCatalogTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="APITest.TerminalTest.ScanMultipleTest" executed="True" result="Success" success="True" time="0.002" asserts="9" />
+                  <test-case name="APITest.TerminalTest.ScanTest" executed="True" result="Success" success="True" time="0.001" asserts="5" />
+                  <test-case name="APITest.TerminalTest.ScanTest2" executed="True" result="Success" success="True" time="0.002" asserts="9" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="VolumeDiscountTest" executed="True" result="Success" success="True" time="0.005" asserts="0">
+                <results>
+                  <test-case name="APITest.VolumeDiscountTest.ConstructorTest" executed="True" result="Success" success="True" time="0.002" asserts="3" />
                 </results>
               </test-suite>
             </results>

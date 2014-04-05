@@ -18,6 +18,9 @@ namespace APITest
         private IEnumerable<Discount> packA;
         private IEnumerable<Discount> packC;
 
+        /*
+         * Setup unit tests
+         */
         [SetUp]
         public void Init()
         {
@@ -55,6 +58,9 @@ namespace APITest
             products.Rows.Add(d);
         }
 
+        /*
+         * Test retrieval of ItemCatalog
+         */
         [Test]
         public void GetItemCatalogTest()
         {
@@ -65,6 +71,9 @@ namespace APITest
             Assert.AreEqual(catalog.GetCount(), 4);
         }
 
+        /*
+         * Test retrieval of product DataTable
+         */
         [Test]
         public void GetDataTest()
         {
@@ -72,6 +81,9 @@ namespace APITest
             Assert.AreEqual(t.GetData(), products);
         }
 
+        /*
+         * Test scanning an item
+         */
         [Test]
         public void ScanTest()
         {
@@ -86,6 +98,9 @@ namespace APITest
             Assert.AreEqual(cart.GetItem("A").GetProduct().GetPrice(), 2.00);
         }
 
+        /*
+         * Test scanning several different items
+         */
         [Test]
         public void ScanTest2()
         {
@@ -105,6 +120,9 @@ namespace APITest
             Assert.AreEqual(cart.GetItem("C").GetProduct().GetPrice(), 1.25);
         }
 
+        /*
+         * Test scanning items in bulk
+         */
         [Test]
         public void ScanMultipleTest()
         {
@@ -124,6 +142,9 @@ namespace APITest
             Assert.AreEqual(cart.GetItem("C").GetProduct().GetPrice(), 1.25);
         }
 
+        /*
+         * Satisfy first required Test case
+         */
         [Test]
         public void CalculateTotalTest1()
         {
@@ -140,6 +161,9 @@ namespace APITest
             Assert.AreEqual(t.CalculateTotal(), 32.40);
         }
 
+        /*
+         * Satisfy second required Test case
+         */
         [Test]
         public void CalculateTotalTest2()
         {
@@ -155,6 +179,9 @@ namespace APITest
             Assert.AreEqual(t.CalculateTotal(), 7.25);
         }
 
+        /*
+         * Satisfy third required Test case
+         */
         [Test]
         public void CalculateTotalTest3()
         {
