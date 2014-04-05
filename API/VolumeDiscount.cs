@@ -11,7 +11,7 @@ namespace API
         public double discountPrice { get; set; }
 
         /*
-         * Creates a VolumeDiscount with a bulk price, minimum quantity to receive that bulk price, and a DiscountType of Volume
+         * Creates a VolumeDiscount with a bulk price, minimum quantity to receive that bulk price, and a DiscountType of Volume, inherits Discount
          */
         public VolumeDiscount(double price, int quantity) : base(DiscountType.Volume)
         {

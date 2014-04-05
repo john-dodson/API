@@ -65,7 +65,7 @@ namespace API
         /*
          * Calculates the total amount of discounts for the CartItems in the Cart. It's more efficient to calculate and apply discounts when 
          * calculating the price because you only need to iterate through the Cart once, but it is tightly coupled. I went with more of a Decorator
-         * model because it is loosely coupled and most Carts display a total discount at the bottom.
+         * pattern because it is loosely coupled and most Carts display a total discount at the bottom.
          */
         public double CalculateDiscount()
         {
